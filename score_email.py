@@ -6,9 +6,14 @@ from rules import RULES
 
 def parse_email(raw_email: str) -> dict:
     msg = email.message_from_string(raw_email)
+    
+    subject_decoded, encoding = decode_header(msg.get("Subject", ""))[0]
+    if isinstance(subject_decoded, bytes):
+        subject_decoded = subject_decoded.decode(encoding or "utf-8", errors="ignore")
+    
     parsed = {
         "from": msg.get("From", ""),
-        "subject": decode_header(msg.get("Subject", ""))[0][0].decode(),
+        "subject": subject_decoded,
         "body_plain": "",
         "body_html": "",
         "attachments": [],
