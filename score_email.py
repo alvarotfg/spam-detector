@@ -35,22 +35,30 @@ def parse_email(raw_email: str) -> dict:
 
     return parsed
 
-def score_email(raw_email: str) -> float:
+def score_email(raw_email: str) -> dict:
     parsed = parse_email(raw_email)
     score = 0
+    matched_rules = []
 
     # Aplicar reglas a todos los campos
     for rule in RULES:
         for field in ["body_plain", "body_html", "subject", "from"]:
             if re.search(rule["pattern"], str(parsed.get(field, "")), re.IGNORECASE):
                 score += rule["score"]
+                matched_rules.append(rule["name"])
 
     # Verificación técnica (SPF/DKIM/DMARC)
     if "fail" in parsed["spf"].lower():
-        score += 30
+        score += 2
+        matched_rules.append("spf_fail")
     if not parsed["dkim"]:
-        score += 20
+        score += 2
+        matched_rules.append("missing_dkim")
     if not parsed["dmarc"]:
-        score += 25
+        score += 2
+        matched_rules.append("dmarc_fail")
 
-    return score
+    return {
+        "score": score,
+        "matched_rules": matched_rules
+    }

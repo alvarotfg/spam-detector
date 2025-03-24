@@ -16,7 +16,8 @@ def score_endpoint():
         return jsonify({"error": "Campo 'email' requerido"}), 400
     
     try:
-        return jsonify({"score": score_email(raw_email)})
+        result = score_email(raw_email)
+        return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
