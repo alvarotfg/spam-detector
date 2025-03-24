@@ -1,9 +1,17 @@
 RULES = [
-    (r"oferta exclusiva", 10),
-    (r"ganador afortunado", 15),
-    (r"urgente", 5),
-    (r"http[s]?://\S+", 20),  # Enlaces
-    (r"suspicious-domain\.com", 25),  # Dominios sospechosos
-    (r"phishing", 10),  # Palabra "phishing"
-    (r"verifica tu cuenta", 15),  # Frase común en phishing
+    {
+        "name": "urgent_keywords",
+        "pattern": r"\b(urgente|verifica tu cuenta|actúa ahora)\b",
+        "score": 15
+    },
+    {
+        "name": "suspicious_links",
+        "pattern": r"http[s]?://(phishing-site|fake-domain)\.com",
+        "score": 25
+    },
+    {
+        "name": "generic_spam_terms",
+        "pattern": r"\b(oferta exclusiva|ganador afortunado)\b",
+        "score": 20
+    }
 ]

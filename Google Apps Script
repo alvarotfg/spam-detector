@@ -1,0 +1,23 @@
+function onGmailMessageOpen() {
+  GmailApp.createDraft(
+    Session.getActiveUser().getEmail(),
+    "Resultado del Análisis",
+    "Su correo está siendo procesado..."
+  );
+
+  const emailId = GmailApp.getCurrentMessage().getId();
+  const rawEmail = GmailApp.getMessageById(emailId).getRawContent();
+  
+  const response = UrlFetchApp.fetch("https://tu-api.com/score", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    payload: JSON.stringify({ email: rawEmail }),
+    muteHttpExceptions: true
+  });
+
+  const result = JSON.parse(response);
+  if (result.score >= 50) {
+    GmailApp.markMessageAsSpam(emailId);
+  }
+  return CardService.newNotificationCard().setText(`Puntaje: ${result.score}`);
+}
