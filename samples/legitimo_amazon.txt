@@ -1,0 +1,15 @@
+Subject: Confirmación de tu pedido en Amazon
+
+Gracias por tu compra.  
+Tu pedido será entregado el 24 de abril.
+
+Producto: Dispositivo Echo  
+Precio: 39,99 €
+
+Puedes consultar el estado de tu pedido en tu cuenta de Amazon.
+
+Atentamente,  
+Amazon.es
+
+Received-SPF: pass  
+DKIM-Signature: presente  

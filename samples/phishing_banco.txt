@@ -1,0 +1,13 @@
+Subject: Verifica tu cuenta bancaria ahora
+
+Estimado cliente:
+
+Hemos detectado una actividad sospechosa en su cuenta. Para evitar la suspensión inmediata, haga clic en el siguiente enlace y confirme su información:
+
+http://banco.phishing.com/verificar
+
+Atentamente,  
+Seguridad Bancaria
+
+Received-SPF: fail  
+DKIM-Signature: 

